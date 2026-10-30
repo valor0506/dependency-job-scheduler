@@ -111,7 +111,7 @@ def parse_tasks(stream: TextIO) -> list[Task]:
         if task_id in seen_ids:
             raise SchedulerError(
                 ErrorCode.DUPLICATE_TASK,
-                f"Task ID '{task_id}' occurs more than once (duplicate at row {row_idx}).",
+                f"Task ID {task_id} occurs more than once",
             )
         seen_ids.add(task_id)
 
