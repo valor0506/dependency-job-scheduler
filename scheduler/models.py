@@ -1,6 +1,7 @@
 """Data models, domain entities, and error definitions for the scheduler."""
 
 from dataclasses import dataclass, field
+from enum import Enum
 
 
 # ==========================================
@@ -53,3 +54,21 @@ class ScheduleResult:
             "makespan": self.makespan,
             "schedule": [entry.to_dict() for entry in self.schedule],
         }
+
+
+# ==========================================
+# 2. Error Definitions & Exception Handling
+# ==========================================
+
+class ErrorCode(str, Enum):
+    """Error codes strictly defined by the assignment specification."""
+
+    INVALID_ARGUMENT = "INVALID_ARGUMENT"
+    READ_ERROR = "READ_ERROR"
+    INVALID_CSV = "INVALID_CSV"
+    INVALID_TASK = "INVALID_TASK"
+    DUPLICATE_TASK = "DUPLICATE_TASK"
+    INVALID_DEPENDENCY = "INVALID_DEPENDENCY"
+    CYCLE_DETECTED = "CYCLE_DETECTED"
+
+
