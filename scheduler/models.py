@@ -72,3 +72,27 @@ class ErrorCode(str, Enum):
     CYCLE_DETECTED = "CYCLE_DETECTED"
 
 
+class SchedulerError(Exception):
+    """Base exception for all scheduler validation and runtime errors."""
+
+    def __init__(self, code: ErrorCode, message: str, cycle: list[str] | None = None) -> None:
+        super().__init__(message)
+        self.code = code
+        self.message = message
+        self.cycle = cycle
+
+    def to_dict(self) -> dict:
+        """Convert error to response dictionary according to specification schema."""
+        err_item: dict = {
+            "code": self.code.value,
+            "message": self.message,
+        }
+        if self.cycle is not None:
+            err_item["cycle"] = self.cycle
+        return {
+            "status": "error",
+            "errors": [err_item],
+        }
+
+
+
