@@ -38,5 +38,7 @@ env/
 .idea/
 .vscode/
 
-# Candidate packet raw archive (keep test inputs/expected in repo, ignore zip if present)
+# Candidate packet raw folder and archives (reference materials)
+Complyance_PSE_Assignment_1_Scheduler_Candidate_v2/
 *.zip
+
